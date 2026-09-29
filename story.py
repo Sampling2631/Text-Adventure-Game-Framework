@@ -1,5 +1,5 @@
-from state import player, People, Places, Routes, Scenes
 from common_classes import *
+from state import People, Places, Routes, Scenes, player
 
 start_here = Switch(SwitchToTypes.Scene, "intro")
 

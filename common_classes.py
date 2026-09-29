@@ -7,18 +7,29 @@ from termcolor import colored
 
 from commands import processCommand
 
-# from commonMessages import (
-#     QuitException,
-#     GameException,
-#     get_user_input,
-#     displayChoice,
-#     display_text,
-#     getChoice,
-#     get_valid_input,
-# )
+# This is where most of the code behind this framework is
+# There's two parent classes, DisplayText and TakesInput. All classes that display text (including TakesInput) inherit
+# DisplayText and all classes that take input inherit TakesInput.
+#
+# All of these classes have a do function. Every do function takes player and place. That way every one of these
+# classes can be called in the playStory method of Playable. Every class that contains a playable list will inherit
+# Playable. Then, in the Playable class's explore method, playStory will be called to play through a list, typically
+# passed to the Playable class in the definition as story=[some story here].
+#
+# An example story class (a class that gets initialized in a list defined as a Playable class's story) would look like
+# this:
+#
+# class SomeFunctionality(could inherit DisplaysText or TakesInput here):
+#   def __init__(self, some arguments):
+#       self.variable = some argument
+#
+#   def do(self, player, place):
+#       # functionality implemented here using values passed on initialization
+#
+#       return (either a switch type or 1 to just go to the next item)
 
 
-### Exceptions
+### ------------------------------ Exceptions ---------------------------------
 
 
 # TODO: Consider whether it's better to raise custom exceptions or to have the process exit nicely by passing back
@@ -31,7 +42,7 @@ class GameException(Exception):
     """Raised to indicate an error while playing the game."""
 
 
-### Enums and Dictionaries
+### ------------------------ Enums and Dictionaries ---------------------------
 
 
 # types of things a switch can switch to - using Index not recommended (and not yet implemented)
@@ -53,7 +64,7 @@ aspectColors = {
     "happiness": "yellow",
 }
 
-### Parent Classes
+### --------------------------- Parent Classes --------------------------------
 
 
 class DisplaysText:
@@ -245,6 +256,7 @@ class Playable:  # Every playable class will extend this function
         # ---- Looping through the list -----
         while i < len(listToPlay) and not i < 0:
             # Defining switchTo as the result of doing the next item
+            # NOTE: Every class implements do so that it can be called here regardless of what it does
             switchTo = listToPlay[i].do(player, self)
 
             # variables
@@ -306,7 +318,7 @@ class Playable:  # Every playable class will extend this function
         return 1
 
 
-## Classes For Story Play
+## --------------------- Classes For Story Play -------------------------------
 
 
 # a class that returns a certain item to switch to
