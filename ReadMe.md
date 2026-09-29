@@ -9,7 +9,7 @@ The classes used are:
 * **Choice** - used when a choice is required. The choice is printed based on input, with custom display messages allowed for each item. All input is sanity checked against the allowed range. Will be integrated with SubPlaces more fully
 * **Flag** - used for in-dictionary switching. When a string is returned by a **Switch**, it searches for a **Flag** with that string as the name.
 * **Switch** - used for switching to other **Subplaces**, **Places**, **Routes**, **Flags**, and **more**. SubPlaces are currently still under development.
-* **Lull** - used for slowing down the story experience
+* **Lull** - used for slowing down the story experience (player sees a green > and clicks enter to see the next block of text)
 * **List** - used for multi-level listing (it returns a list to play through, makes things a little more readable)
 
 ### Note
